@@ -1,0 +1,280 @@
+{
+ "run_id": "CICIDS2017__multiclass__SimFL__dirichlet_a1.0__M5__seed0",
+ "method": "SimFL",
+ "dataset": "CICIDS2017",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 1.0,
+ "n_parties": 5,
+ "seed": 0,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": []
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 21440,
+  "n_test": 5360,
+  "n_features": 77,
+  "class_names": [
+   "BENIGN",
+   "Bot",
+   "BruteForce",
+   "DoS",
+   "Infiltration",
+   "PortScan",
+   "WebAttack"
+  ],
+  "party_sizes": [
+   1231,
+   6113,
+   1414,
+   7578,
+   5104
+  ],
+  "party_class_counts": [
+   [
+    473,
+    367,
+    4,
+    115,
+    0,
+    267,
+    5
+   ],
+   [
+    4047,
+    543,
+    61,
+    457,
+    7,
+    38,
+    960
+   ],
+   [
+    472,
+    97,
+    9,
+    78,
+    3,
+    596,
+    159
+   ],
+   [
+    5519,
+    343,
+    2,
+    1147,
+    5,
+    16,
+    546
+   ],
+   [
+    4069,
+    223,
+    1,
+    636,
+    14,
+    87,
+    74
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   2,
+   14,
+   3,
+   17,
+   14
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 36.706471548507466
+ },
+ "timing": {
+  "train_total_s": 5.675806754000064,
+  "setup_s": 0.008833037999920634,
+  "lsh_preprocessing_s": 4.017083548000073,
+  "local_gradients_s": 0.18908564899913927,
+  "tree_building_s": 0.7963083750005353,
+  "aggregation_comm_s": 0.25675672899797064,
+  "prediction_update_s": 0.2579676299997118,
+  "model_merge_s": 0.140705672000081
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 24800,
+  "hash_exchange_bytes": 14064640,
+  "preprocessing_bytes": 14089440,
+  "gradient_bytes": 24282780,
+  "tree_bytes": 2838092,
+  "training_bytes": 27120872,
+  "messages": 440,
+  "total_rounds": 52,
+  "total_bytes": 41210312
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 1.1671552,
+  "training_s": 3.16966976,
+  "total_s": 4.33682496
+ },
+ "quality": {
+  "accuracy": 0.9912313432835821,
+  "macro_f1": 0.9298890528277678,
+  "weighted_f1": 0.9908962690852919,
+  "macro_precision": 0.9921539893618688,
+  "macro_recall": 0.8960702675177165,
+  "fpr": 0.0035665294924554186,
+  "precision": {
+   "BENIGN": 0.991807755324959,
+   "Bot": 0.989769820971867,
+   "BruteForce": 1.0,
+   "DoS": 0.9917627677100495,
+   "Infiltration": 1.0,
+   "PortScan": 0.9763779527559056,
+   "WebAttack": 0.9953596287703016
+  },
+  "recall": {
+   "BENIGN": 0.9964334705075446,
+   "Bot": 0.9847328244274809,
+   "BruteForce": 0.47368421052631576,
+   "DoS": 0.9885057471264368,
+   "Infiltration": 0.8571428571428571,
+   "PortScan": 0.9880478087649402,
+   "WebAttack": 0.9839449541284404
+  },
+  "support": {
+   "BENIGN": 3645,
+   "Bot": 393,
+   "BruteForce": 19,
+   "DoS": 609,
+   "Infiltration": 7,
+   "PortScan": 251,
+   "WebAttack": 436
+  },
+  "confusion_matrix": [
+   [
+    3632,
+    3,
+    0,
+    4,
+    0,
+    6,
+    0
+   ],
+   [
+    6,
+    387,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    10,
+    0,
+    9,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    6,
+    0,
+    0,
+    602,
+    0,
+    0,
+    1
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    6,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    0,
+    0,
+    0,
+    248,
+    1
+   ],
+   [
+    6,
+    0,
+    0,
+    1,
+    0,
+    0,
+    429
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.3558279850847056e-06,
+  "single_median_s": 0.00020222999995667124,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 668424,
+  "n_trees": 350,
+  "n_boosting_rounds": 50,
+  "total_nodes": 12872
+ }
+}
