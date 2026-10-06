@@ -1,0 +1,254 @@
+{
+ "run_id": "IoT__binary__SOLO__dirichlet_a0.5__M10__seed3",
+ "method": "SOLO",
+ "dataset": "IoT",
+ "mode": "binary",
+ "partition": "dirichlet",
+ "alpha": 0.5,
+ "n_parties": 10,
+ "seed": 3,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": [
+   "Src_IP",
+   "Dst_IP"
+  ]
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 50062,
+  "n_test": 12516,
+  "n_features": 79,
+  "class_names": [
+   "benign",
+   "attack"
+  ],
+  "party_sizes": [
+   5405,
+   14769,
+   13070,
+   1298,
+   3571,
+   2453,
+   1140,
+   3788,
+   3821,
+   747
+  ],
+  "party_class_counts": [
+   [
+    309,
+    5096
+   ],
+   [
+    955,
+    13814
+   ],
+   [
+    1253,
+    11817
+   ],
+   [
+    448,
+    850
+   ],
+   [
+    158,
+    3413
+   ],
+   [
+    58,
+    2395
+   ],
+   [
+    8,
+    1132
+   ],
+   [
+    1,
+    3787
+   ],
+   [
+    6,
+    3815
+   ],
+   [
+    29,
+    718
+   ]
+  ]
+ },
+ "timing": {
+  "train_total_s": 0.05203130759996384,
+  "setup_s": 0.001986884999996619,
+  "lsh_preprocessing_s": 0.0,
+  "local_gradients_s": 0.0,
+  "tree_building_s": 0.05000960540000961,
+  "aggregation_comm_s": 0.0,
+  "prediction_update_s": 0.0,
+  "model_merge_s": 0.0
+ },
+ "communication": {
+  "scaler_rounds": 0,
+  "hash_exchange_rounds": 0,
+  "preprocessing_rounds": 0,
+  "training_rounds": 0,
+  "scaler_bytes": 0,
+  "hash_exchange_bytes": 0,
+  "preprocessing_bytes": 0,
+  "gradient_bytes": 0,
+  "tree_bytes": 0,
+  "training_bytes": 0,
+  "messages": 0,
+  "total_rounds": 0,
+  "total_bytes": 0
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 0.0,
+  "training_s": 0.0,
+  "total_s": 0.0
+ },
+ "quality": {
+  "accuracy": 0.975343560242889,
+  "macro_f1": 0.8739705436023515,
+  "weighted_f1": 0.9723592019267183,
+  "macro_precision": 0.890508969382747,
+  "macro_recall": 0.8689250984821355,
+  "fpr": 0.25322580645161286,
+  "precision": {
+   "benign": 0.7979589239326829,
+   "attack": 0.9830590148328113
+  },
+  "recall": {
+   "benign": 0.746774193548387,
+   "attack": 0.9910760034158838
+  },
+  "support": {
+   "benign": 806.0,
+   "attack": 11710.0
+  },
+  "confusion_matrix": [
+   [
+    601.9,
+    204.1
+   ],
+   [
+    104.5,
+    11605.5
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 2.3196742568987393e-07,
+  "single_median_s": 0.00013615419998131985,
+  "n_single": 1000.0
+ },
+ "model": {
+  "bytes": 61029.5,
+  "n_trees": 50.0,
+  "n_boosting_rounds": 50.0,
+  "total_nodes": 803.8
+ },
+ "solo_per_party": [
+  {
+   "macro_f1": 0.9864409320916683,
+   "accuracy": 0.9968040907638223,
+   "fpr": 0.04838709677419355,
+   "train_total_s": 0.059223390000170184
+  },
+  {
+   "macro_f1": 0.9899964992542931,
+   "accuracy": 0.9976030680728667,
+   "fpr": 0.02481389578163772,
+   "train_total_s": 0.11743361800017738
+  },
+  {
+   "macro_f1": 0.9913100815295385,
+   "accuracy": 0.9979226589964845,
+   "fpr": 0.02481389578163772,
+   "train_total_s": 0.11316385700001774
+  },
+  {
+   "macro_f1": 0.91570342903624,
+   "accuracy": 0.9767497603068073,
+   "fpr": 0.02357320099255583,
+   "train_total_s": 0.04585680599984698
+  },
+  {
+   "macro_f1": 0.9809721859496885,
+   "accuracy": 0.9955257270693513,
+   "fpr": 0.060794044665012405,
+   "train_total_s": 0.04681985699971847
+  },
+  {
+   "macro_f1": 0.9551174794193754,
+   "accuracy": 0.9897730904442313,
+   "fpr": 0.13771712158808933,
+   "train_total_s": 0.039935926999987714
+  },
+  {
+   "macro_f1": 0.6640967737491408,
+   "accuracy": 0.9070789389581336,
+   "fpr": 0.5607940446650124,
+   "train_total_s": 0.02082104100009019
+  },
+  {
+   "macro_f1": 0.4833649797737967,
+   "accuracy": 0.9356024288910195,
+   "fpr": 1.0,
+   "train_total_s": 0.023446306999630906
+  },
+  {
+   "macro_f1": 0.8153149535725063,
+   "accuracy": 0.9660434643656121,
+   "fpr": 0.5136476426799007,
+   "train_total_s": 0.02821460199993453
+  },
+  {
+   "macro_f1": 0.9573881216472678,
+   "accuracy": 0.9903323745605624,
+   "fpr": 0.13771712158808933,
+   "train_total_s": 0.025397671000064292
+  }
+ ]
+}

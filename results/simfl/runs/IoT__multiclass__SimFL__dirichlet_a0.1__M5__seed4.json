@@ -1,0 +1,237 @@
+{
+ "run_id": "IoT__multiclass__SimFL__dirichlet_a0.1__M5__seed4",
+ "method": "SimFL",
+ "dataset": "IoT",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 0.1,
+ "n_parties": 5,
+ "seed": 4,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": [
+   "Src_IP",
+   "Dst_IP"
+  ]
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 50062,
+  "n_test": 12516,
+  "n_features": 79,
+  "class_names": [
+   "Normal",
+   "DoS",
+   "MITM ARP Spoofing",
+   "Mirai",
+   "Scan"
+  ],
+  "party_sizes": [
+   30265,
+   5442,
+   12587,
+   944,
+   824
+  ],
+  "party_class_counts": [
+   [
+    5,
+    0,
+    808,
+    29452,
+    0
+   ],
+   [
+    0,
+    3820,
+    0,
+    1622,
+    0
+   ],
+   [
+    3200,
+    900,
+    2023,
+    949,
+    5515
+   ],
+   [
+    2,
+    116,
+    0,
+    247,
+    579
+   ],
+   [
+    18,
+    1,
+    1,
+    802,
+    2
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   30,
+   5,
+   12,
+   0,
+   3
+  ],
+  "unmatched_samples": 1,
+  "mean_matching_hashes": 36.762799129079944
+ },
+ "timing": {
+  "train_total_s": 8.953604833999634,
+  "setup_s": 0.01769549399978132,
+  "lsh_preprocessing_s": 6.579513391000091,
+  "local_gradients_s": 0.32317527999657614,
+  "tree_building_s": 1.206982901999254,
+  "aggregation_comm_s": 0.27579295598707176,
+  "prediction_update_s": 0.36661422799852517,
+  "model_merge_s": 0.17546565100019507
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 25440,
+  "hash_exchange_bytes": 32840672,
+  "preprocessing_bytes": 32866112,
+  "gradient_bytes": 16486680,
+  "tree_bytes": 5650472,
+  "training_bytes": 22137152,
+  "messages": 440,
+  "total_rounds": 52,
+  "total_bytes": 55003264
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 2.66928896,
+  "training_s": 2.77097216,
+  "total_s": 5.44026112
+ },
+ "quality": {
+  "accuracy": 0.9447906679450304,
+  "macro_f1": 0.9228776571087142,
+  "weighted_f1": 0.9444871389857135,
+  "macro_precision": 0.9371295261786651,
+  "macro_recall": 0.9114469287955662,
+  "fpr": 0.04838709677419355,
+  "precision": {
+   "Normal": 0.9909560723514211,
+   "DoS": 0.9860541427399507,
+   "MITM ARP Spoofing": 0.9077181208053692,
+   "Mirai": 0.9563077661745288,
+   "Scan": 0.8446115288220551
+  },
+  "recall": {
+   "Normal": 0.9516129032258065,
+   "DoS": 0.9933884297520661,
+   "MITM ARP Spoofing": 0.7641242937853108,
+   "Mirai": 0.9635945815191098,
+   "Scan": 0.884514435695538
+  },
+  "support": {
+   "Normal": 806,
+   "DoS": 1210,
+   "MITM ARP Spoofing": 708,
+   "Mirai": 8268,
+   "Scan": 1524
+  },
+  "confusion_matrix": [
+   [
+    767,
+    1,
+    1,
+    37,
+    0
+   ],
+   [
+    2,
+    1202,
+    0,
+    5,
+    1
+   ],
+   [
+    0,
+    1,
+    541,
+    159,
+    7
+   ],
+   [
+    5,
+    12,
+    44,
+    7967,
+    240
+   ],
+   [
+    0,
+    3,
+    10,
+    163,
+    1348
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.310340044739968e-06,
+  "single_median_s": 0.00022089100002631312,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 1371804,
+  "n_trees": 250,
+  "n_boosting_rounds": 50,
+  "total_nodes": 35486
+ }
+}

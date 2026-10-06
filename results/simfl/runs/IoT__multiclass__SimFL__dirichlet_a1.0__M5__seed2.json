@@ -1,0 +1,237 @@
+{
+ "run_id": "IoT__multiclass__SimFL__dirichlet_a1.0__M5__seed2",
+ "method": "SimFL",
+ "dataset": "IoT",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 1.0,
+ "n_parties": 5,
+ "seed": 2,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": [
+   "Src_IP",
+   "Dst_IP"
+  ]
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 50062,
+  "n_test": 12516,
+  "n_features": 79,
+  "class_names": [
+   "Normal",
+   "DoS",
+   "MITM ARP Spoofing",
+   "Mirai",
+   "Scan"
+  ],
+  "party_sizes": [
+   15612,
+   24312,
+   4162,
+   3256,
+   2720
+  ],
+  "party_class_counts": [
+   [
+    259,
+    2274,
+    1099,
+    11468,
+    512
+   ],
+   [
+    951,
+    1865,
+    862,
+    16728,
+    3906
+   ],
+   [
+    229,
+    8,
+    496,
+    2381,
+    1048
+   ],
+   [
+    1662,
+    375,
+    347,
+    672,
+    200
+   ],
+   [
+    124,
+    315,
+    28,
+    1823,
+    430
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   15,
+   24,
+   4,
+   3,
+   4
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 38.63233090967201
+ },
+ "timing": {
+  "train_total_s": 9.63829221900005,
+  "setup_s": 0.017685632999928202,
+  "lsh_preprocessing_s": 7.506004160999964,
+  "local_gradients_s": 0.32972123300260137,
+  "tree_building_s": 0.9426904360016124,
+  "aggregation_comm_s": 0.3507853640066969,
+  "prediction_update_s": 0.37166933600292396,
+  "model_merge_s": 0.11036115399974733
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 25440,
+  "hash_exchange_bytes": 32840672,
+  "preprocessing_bytes": 32866112,
+  "gradient_bytes": 37273560,
+  "tree_bytes": 3602380,
+  "training_bytes": 40875940,
+  "messages": 440,
+  "total_rounds": 52,
+  "total_bytes": 73742052
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 2.66928896,
+  "training_s": 4.2700752,
+  "total_s": 6.93936416
+ },
+ "quality": {
+  "accuracy": 0.975790987535954,
+  "macro_f1": 0.9556094241576364,
+  "weighted_f1": 0.9752492884286211,
+  "macro_precision": 0.9733614666252738,
+  "macro_recall": 0.9397932164593401,
+  "fpr": 0.033498759305210915,
+  "precision": {
+   "Normal": 0.9961636828644501,
+   "DoS": 0.9991721854304636,
+   "MITM ARP Spoofing": 0.9074675324675324,
+   "Mirai": 0.9728897833550373,
+   "Scan": 0.9911141490088858
+  },
+  "recall": {
+   "Normal": 0.966501240694789,
+   "DoS": 0.9975206611570248,
+   "MITM ARP Spoofing": 0.78954802259887,
+   "Mirai": 0.9939525882922109,
+   "Scan": 0.9514435695538058
+  },
+  "support": {
+   "Normal": 806,
+   "DoS": 1210,
+   "MITM ARP Spoofing": 708,
+   "Mirai": 8268,
+   "Scan": 1524
+  },
+  "confusion_matrix": [
+   [
+    779,
+    1,
+    3,
+    19,
+    4
+   ],
+   [
+    0,
+    1207,
+    0,
+    3,
+    0
+   ],
+   [
+    1,
+    0,
+    559,
+    147,
+    1
+   ],
+   [
+    2,
+    0,
+    40,
+    8218,
+    8
+   ],
+   [
+    0,
+    0,
+    14,
+    60,
+    1450
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.1963354906021988e-06,
+  "single_median_s": 0.00022380299992619257,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 859781,
+  "n_trees": 250,
+  "n_boosting_rounds": 50,
+  "total_nodes": 20430
+ }
+}

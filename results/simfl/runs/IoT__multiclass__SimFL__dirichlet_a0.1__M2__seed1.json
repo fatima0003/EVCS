@@ -1,0 +1,210 @@
+{
+ "run_id": "IoT__multiclass__SimFL__dirichlet_a0.1__M2__seed1",
+ "method": "SimFL",
+ "dataset": "IoT",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 0.1,
+ "n_parties": 2,
+ "seed": 1,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": [
+   "Src_IP",
+   "Dst_IP"
+  ]
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 50062,
+  "n_test": 12516,
+  "n_features": 79,
+  "class_names": [
+   "Normal",
+   "DoS",
+   "MITM ARP Spoofing",
+   "Mirai",
+   "Scan"
+  ],
+  "party_sizes": [
+   29617,
+   20445
+  ],
+  "party_class_counts": [
+   [
+    0,
+    0,
+    0,
+    29617,
+    0
+   ],
+   [
+    3225,
+    4837,
+    2832,
+    3455,
+    6096
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   29,
+   21
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 36.874755303423754
+ },
+ "timing": {
+  "train_total_s": 6.300289840999994,
+  "setup_s": 0.018541663000178232,
+  "lsh_preprocessing_s": 3.8243629200001124,
+  "local_gradients_s": 0.3505189549973693,
+  "tree_building_s": 1.3890090419981789,
+  "aggregation_comm_s": 0.22740811300127461,
+  "prediction_update_s": 0.3033555570009412,
+  "model_merge_s": 0.18068889899996066
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 2544,
+  "hash_exchange_bytes": 8210168,
+  "preprocessing_bytes": 8212712,
+  "gradient_bytes": 14342856,
+  "tree_bytes": 1388262,
+  "training_bytes": 15731118,
+  "messages": 104,
+  "total_rounds": 52,
+  "total_bytes": 23943830
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 0.69701696,
+  "training_s": 2.25848944,
+  "total_s": 2.9555064
+ },
+ "quality": {
+  "accuracy": 0.9607702141259188,
+  "macro_f1": 0.9305201664517682,
+  "weighted_f1": 0.9597159902064775,
+  "macro_precision": 0.9453042818332709,
+  "macro_recall": 0.9190027759325856,
+  "fpr": 0.031017369727047148,
+  "precision": {
+   "Normal": 0.97625,
+   "DoS": 0.9741518578352181,
+   "MITM ARP Spoofing": 0.8598615916955017,
+   "Mirai": 0.9662250865258384,
+   "Scan": 0.9500328731097962
+  },
+  "recall": {
+   "Normal": 0.9689826302729528,
+   "DoS": 0.996694214876033,
+   "MITM ARP Spoofing": 0.7019774011299436,
+   "Mirai": 0.9791969037252056,
+   "Scan": 0.9481627296587927
+  },
+  "support": {
+   "Normal": 806,
+   "DoS": 1210,
+   "MITM ARP Spoofing": 708,
+   "Mirai": 8268,
+   "Scan": 1524
+  },
+  "confusion_matrix": [
+   [
+    781,
+    1,
+    1,
+    21,
+    2
+   ],
+   [
+    2,
+    1206,
+    1,
+    1,
+    0
+   ],
+   [
+    0,
+    8,
+    497,
+    201,
+    2
+   ],
+   [
+    16,
+    22,
+    62,
+    8096,
+    72
+   ],
+   [
+    1,
+    1,
+    17,
+    60,
+    1445
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.3775381112110554e-06,
+  "single_median_s": 0.00024318350006069522,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 1347448,
+  "n_trees": 250,
+  "n_boosting_rounds": 50,
+  "total_nodes": 34770
+ }
+}

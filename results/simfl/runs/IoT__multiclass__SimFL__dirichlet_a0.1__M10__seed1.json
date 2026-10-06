@@ -1,0 +1,282 @@
+{
+ "run_id": "IoT__multiclass__SimFL__dirichlet_a0.1__M10__seed1",
+ "method": "SimFL",
+ "dataset": "IoT",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 0.1,
+ "n_parties": 10,
+ "seed": 1,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": [
+   "Src_IP",
+   "Dst_IP"
+  ]
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 50062,
+  "n_test": 12516,
+  "n_features": 79,
+  "class_names": [
+   "Normal",
+   "DoS",
+   "MITM ARP Spoofing",
+   "Mirai",
+   "Scan"
+  ],
+  "party_sizes": [
+   4809,
+   3751,
+   6468,
+   8681,
+   1785,
+   98,
+   23018,
+   177,
+   264,
+   1011
+  ],
+  "party_class_counts": [
+   [
+    0,
+    3021,
+    113,
+    1675,
+    0
+   ],
+   [
+    2813,
+    0,
+    928,
+    1,
+    9
+   ],
+   [
+    10,
+    39,
+    1228,
+    1134,
+    4057
+   ],
+   [
+    149,
+    0,
+    0,
+    8531,
+    1
+   ],
+   [
+    188,
+    415,
+    333,
+    573,
+    276
+   ],
+   [
+    64,
+    0,
+    0,
+    34,
+    0
+   ],
+   [
+    0,
+    29,
+    146,
+    21116,
+    1727
+   ],
+   [
+    0,
+    170,
+    0,
+    7,
+    0
+   ],
+   [
+    0,
+    241,
+    16,
+    0,
+    7
+   ],
+   [
+    1,
+    922,
+    68,
+    1,
+    19
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   4,
+   3,
+   6,
+   8,
+   1,
+   0,
+   22,
+   0,
+   0,
+   6
+  ],
+  "unmatched_samples": 2,
+  "mean_matching_hashes": 32.664791214449636
+ },
+ "timing": {
+  "train_total_s": 13.633744438000122,
+  "setup_s": 0.03738470600001165,
+  "lsh_preprocessing_s": 11.13732488300002,
+  "local_gradients_s": 0.356192207003005,
+  "tree_building_s": 1.0007068329987305,
+  "aggregation_comm_s": 0.4153374239954246,
+  "prediction_update_s": 0.542538103994957,
+  "model_merge_s": 0.1298173259997384
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 114480,
+  "hash_exchange_bytes": 73891512,
+  "preprocessing_bytes": 74005992,
+  "gradient_bytes": 26539108,
+  "tree_bytes": 9347013,
+  "training_bytes": 35886121,
+  "messages": 1080,
+  "total_rounds": 52,
+  "total_bytes": 109892113
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 5.96047936,
+  "training_s": 3.87088968,
+  "total_s": 9.83136904
+ },
+ "quality": {
+  "accuracy": 0.9517417705337169,
+  "macro_f1": 0.9023361888653374,
+  "weighted_f1": 0.9490834929096433,
+  "macro_precision": 0.9428371878262715,
+  "macro_recall": 0.8728261037727719,
+  "fpr": 0.141439205955335,
+  "precision": {
+   "Normal": 0.97054698457223,
+   "DoS": 0.9983402489626556,
+   "MITM ARP Spoofing": 0.8428571428571429,
+   "Mirai": 0.9496804183614178,
+   "Scan": 0.9527611443779108
+  },
+  "recall": {
+   "Normal": 0.858560794044665,
+   "DoS": 0.9942148760330578,
+   "MITM ARP Spoofing": 0.5833333333333334,
+   "Mirai": 0.988388969521045,
+   "Scan": 0.9396325459317585
+  },
+  "support": {
+   "Normal": 806,
+   "DoS": 1210,
+   "MITM ARP Spoofing": 708,
+   "Mirai": 8268,
+   "Scan": 1524
+  },
+  "confusion_matrix": [
+   [
+    692,
+    2,
+    1,
+    77,
+    34
+   ],
+   [
+    1,
+    1203,
+    0,
+    6,
+    0
+   ],
+   [
+    0,
+    0,
+    413,
+    277,
+    18
+   ],
+   [
+    13,
+    0,
+    64,
+    8172,
+    19
+   ],
+   [
+    7,
+    0,
+    12,
+    73,
+    1432
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.4607603067937153e-06,
+  "single_median_s": 0.00020074399981240276,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 997743,
+  "n_trees": 250,
+  "n_boosting_rounds": 50,
+  "total_nodes": 24486
+ }
+}
