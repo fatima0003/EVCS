@@ -1,0 +1,247 @@
+{
+ "run_id": "CICIDS2017__multiclass__SimFL__iid__M2__seed3",
+ "method": "SimFL",
+ "dataset": "CICIDS2017",
+ "mode": "multiclass",
+ "partition": "iid",
+ "alpha": null,
+ "n_parties": 2,
+ "seed": 3,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": []
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 21440,
+  "n_test": 5360,
+  "n_features": 77,
+  "class_names": [
+   "BENIGN",
+   "Bot",
+   "BruteForce",
+   "DoS",
+   "Infiltration",
+   "PortScan",
+   "WebAttack"
+  ],
+  "party_sizes": [
+   10720,
+   10720
+  ],
+  "party_class_counts": [
+   [
+    7290,
+    787,
+    38,
+    1216,
+    15,
+    502,
+    872
+   ],
+   [
+    7290,
+    786,
+    39,
+    1217,
+    14,
+    502,
+    872
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   25,
+   25
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 38.20685634328358
+ },
+ "timing": {
+  "train_total_s": 3.961614314000144,
+  "setup_s": 0.007888634999972055,
+  "lsh_preprocessing_s": 2.5614412800000537,
+  "local_gradients_s": 0.16837764300089475,
+  "tree_building_s": 0.8305039120002675,
+  "aggregation_comm_s": 0.15513117599994075,
+  "prediction_update_s": 0.15416317599920148,
+  "model_merge_s": 0.07921447300009277
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 2480,
+  "hash_exchange_bytes": 3516160,
+  "preprocessing_bytes": 3518640,
+  "gradient_bytes": 19323000,
+  "tree_bytes": 691758,
+  "training_bytes": 20014758,
+  "messages": 104,
+  "total_rounds": 52,
+  "total_bytes": 23533398
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 0.3214912,
+  "training_s": 2.60118064,
+  "total_s": 2.92267184
+ },
+ "quality": {
+  "accuracy": 0.9936567164179104,
+  "macro_f1": 0.9786277841073747,
+  "weighted_f1": 0.993642143037415,
+  "macro_precision": 0.9949960358588931,
+  "macro_recall": 0.9640609887511492,
+  "fpr": 0.0024691358024691358,
+  "precision": {
+   "BENIGN": 0.9937141295435912,
+   "Bot": 0.989821882951654,
+   "BruteForce": 1.0,
+   "DoS": 0.9933884297520661,
+   "Infiltration": 1.0,
+   "PortScan": 0.9880478087649402,
+   "WebAttack": 1.0
+  },
+  "recall": {
+   "BENIGN": 0.9975308641975309,
+   "Bot": 0.989821882951654,
+   "BruteForce": 0.9473684210526315,
+   "DoS": 0.986863711001642,
+   "Infiltration": 0.8571428571428571,
+   "PortScan": 0.9880478087649402,
+   "WebAttack": 0.981651376146789
+  },
+  "support": {
+   "BENIGN": 3645,
+   "Bot": 393,
+   "BruteForce": 19,
+   "DoS": 609,
+   "Infiltration": 7,
+   "PortScan": 251,
+   "WebAttack": 436
+  },
+  "confusion_matrix": [
+   [
+    3636,
+    3,
+    0,
+    3,
+    0,
+    3,
+    0
+   ],
+   [
+    4,
+    389,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    18,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    8,
+    0,
+    0,
+    601,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    6,
+    0,
+    0
+   ],
+   [
+    3,
+    0,
+    0,
+    0,
+    0,
+    248,
+    0
+   ],
+   [
+    7,
+    0,
+    0,
+    1,
+    0,
+    0,
+    428
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.3178930970525471e-06,
+  "single_median_s": 0.0002151195000124062,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 650659,
+  "n_trees": 350,
+  "n_boosting_rounds": 50,
+  "total_nodes": 12350
+ }
+}

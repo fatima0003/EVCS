@@ -1,0 +1,376 @@
+{
+ "run_id": "CICIDS2017__multiclass__SOLO__dirichlet_a0.5__M10__seed1",
+ "method": "SOLO",
+ "dataset": "CICIDS2017",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 0.5,
+ "n_parties": 10,
+ "seed": 1,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": []
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 21440,
+  "n_test": 5360,
+  "n_features": 77,
+  "class_names": [
+   "BENIGN",
+   "Bot",
+   "BruteForce",
+   "DoS",
+   "Infiltration",
+   "PortScan",
+   "WebAttack"
+  ],
+  "party_sizes": [
+   6277,
+   1474,
+   742,
+   477,
+   2298,
+   2348,
+   503,
+   434,
+   1997,
+   4890
+  ],
+  "party_class_counts": [
+   [
+    5659,
+    134,
+    0,
+    0,
+    5,
+    49,
+    430
+   ],
+   [
+    1167,
+    42,
+    8,
+    126,
+    6,
+    67,
+    58
+   ],
+   [
+    13,
+    422,
+    1,
+    135,
+    3,
+    45,
+    123
+   ],
+   [
+    0,
+    45,
+    0,
+    11,
+    10,
+    241,
+    170
+   ],
+   [
+    1731,
+    23,
+    16,
+    468,
+    0,
+    37,
+    23
+   ],
+   [
+    312,
+    263,
+    48,
+    1301,
+    2,
+    418,
+    4
+   ],
+   [
+    20,
+    92,
+    0,
+    138,
+    0,
+    40,
+    213
+   ],
+   [
+    117,
+    7,
+    0,
+    200,
+    0,
+    101,
+    9
+   ],
+   [
+    1165,
+    391,
+    1,
+    11,
+    1,
+    4,
+    424
+   ],
+   [
+    4396,
+    154,
+    3,
+    43,
+    2,
+    2,
+    290
+   ]
+  ]
+ },
+ "timing": {
+  "train_total_s": 0.19855046970005788,
+  "setup_s": 0.0011038376999977118,
+  "lsh_preprocessing_s": 0.0,
+  "local_gradients_s": 0.0,
+  "tree_building_s": 0.19740309300000264,
+  "aggregation_comm_s": 0.0,
+  "prediction_update_s": 0.0,
+  "model_merge_s": 0.0
+ },
+ "communication": {
+  "scaler_rounds": 0,
+  "hash_exchange_rounds": 0,
+  "preprocessing_rounds": 0,
+  "training_rounds": 0,
+  "scaler_bytes": 0,
+  "hash_exchange_bytes": 0,
+  "preprocessing_bytes": 0,
+  "gradient_bytes": 0,
+  "tree_bytes": 0,
+  "training_bytes": 0,
+  "messages": 0,
+  "total_rounds": 0,
+  "total_bytes": 0
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 0.0,
+  "training_s": 0.0,
+  "total_s": 0.0
+ },
+ "quality": {
+  "accuracy": 0.8077425373134328,
+  "macro_f1": 0.6027744532505922,
+  "weighted_f1": 0.7888934289485376,
+  "macro_precision": 0.6313641261168718,
+  "macro_recall": 0.6506816495476927,
+  "fpr": 0.20685871056241423,
+  "precision": {
+   "BENIGN": 0.8418706571179542,
+   "Bot": 0.7988861178629599,
+   "BruteForce": 0.25588235294117645,
+   "DoS": 0.7288499881218413,
+   "Infiltration": 0.22630718954248366,
+   "PortScan": 0.7775677400866183,
+   "WebAttack": 0.7901848371450685
+  },
+  "recall": {
+   "BENIGN": 0.7931412894375858,
+   "Bot": 0.8839694656488548,
+   "BruteForce": 0.19473684210526315,
+   "DoS": 0.7848932676518884,
+   "Infiltration": 0.1571428571428571,
+   "PortScan": 0.8147410358565738,
+   "WebAttack": 0.9261467889908257
+  },
+  "support": {
+   "BENIGN": 3645.0,
+   "Bot": 393.0,
+   "BruteForce": 19.0,
+   "DoS": 609.0,
+   "Infiltration": 7.0,
+   "PortScan": 251.0,
+   "WebAttack": 436.0
+  },
+  "confusion_matrix": [
+   [
+    2891.0,
+    276.6,
+    1.5,
+    178.1,
+    30.2,
+    80.0,
+    187.6
+   ],
+   [
+    45.2,
+    347.4,
+    0.0,
+    0.1,
+    0.0,
+    0.0,
+    0.3
+   ],
+   [
+    8.8,
+    0.3,
+    3.7,
+    2.4,
+    0.0,
+    0.4,
+    3.4
+   ],
+   [
+    103.1,
+    8.5,
+    0.0,
+    478.0,
+    0.5,
+    8.9,
+    10.0
+   ],
+   [
+    3.8,
+    1.8,
+    0.0,
+    0.3,
+    1.1,
+    0.0,
+    0.0
+   ],
+   [
+    45.1,
+    0.4,
+    0.0,
+    0.0,
+    0.1,
+    204.5,
+    0.9
+   ],
+   [
+    26.2,
+    0.0,
+    0.0,
+    6.0,
+    0.0,
+    0.0,
+    403.8
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 9.404936940330715e-07,
+  "single_median_s": 0.00018407625002510032,
+  "n_single": 1000.0
+ },
+ "model": {
+  "bytes": 329835.9,
+  "n_trees": 350.0,
+  "n_boosting_rounds": 50.0,
+  "total_nodes": 2920.2
+ },
+ "solo_per_party": [
+  {
+   "macro_f1": 0.6109263229044553,
+   "accuracy": 0.8729477611940298,
+   "fpr": 0.0008230452674897119,
+   "train_total_s": 0.30397711900013746
+  },
+  {
+   "macro_f1": 0.8489019032750024,
+   "accuracy": 0.9695895522388059,
+   "fpr": 0.005761316872427984,
+   "train_total_s": 0.23935219800000596
+  },
+  {
+   "macro_f1": 0.5414937598901662,
+   "accuracy": 0.6848880597014926,
+   "fpr": 0.4534979423868313,
+   "train_total_s": 0.13213488199994572
+  },
+  {
+   "macro_f1": 0.280035141141447,
+   "accuracy": 0.2716417910447761,
+   "fpr": 1.0,
+   "train_total_s": 0.06241158300008465
+  },
+  {
+   "macro_f1": 0.7517406967879838,
+   "accuracy": 0.9414179104477612,
+   "fpr": 0.00823045267489712,
+   "train_total_s": 0.2437628750001295
+  },
+  {
+   "macro_f1": 0.7730864329504678,
+   "accuracy": 0.9501865671641792,
+   "fpr": 0.04993141289437586,
+   "train_total_s": 0.2468479839999418
+  },
+  {
+   "macro_f1": 0.5030633362347233,
+   "accuracy": 0.6860074626865672,
+   "fpr": 0.44609053497942386,
+   "train_total_s": 0.11122254600013548
+  },
+  {
+   "macro_f1": 0.5796819872661387,
+   "accuracy": 0.8688432835820895,
+   "fpr": 0.09876543209876543,
+   "train_total_s": 0.10643806899997799
+  },
+  {
+   "macro_f1": 0.6058369537119825,
+   "accuracy": 0.9218283582089553,
+   "fpr": 0.0054869684499314125,
+   "train_total_s": 0.21797724100019877
+  },
+  {
+   "macro_f1": 0.5329779983435549,
+   "accuracy": 0.9100746268656716,
+   "fpr": 0.0,
+   "train_total_s": 0.32138020000002143
+  }
+ ]
+}

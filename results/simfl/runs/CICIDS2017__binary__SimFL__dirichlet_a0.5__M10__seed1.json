@@ -1,0 +1,210 @@
+{
+ "run_id": "CICIDS2017__binary__SimFL__dirichlet_a0.5__M10__seed1",
+ "method": "SimFL",
+ "dataset": "CICIDS2017",
+ "mode": "binary",
+ "partition": "dirichlet",
+ "alpha": 0.5,
+ "n_parties": 10,
+ "seed": 1,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": []
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 21440,
+  "n_test": 5360,
+  "n_features": 77,
+  "class_names": [
+   "benign",
+   "attack"
+  ],
+  "party_sizes": [
+   6277,
+   1474,
+   742,
+   477,
+   2298,
+   2348,
+   503,
+   434,
+   1997,
+   4890
+  ],
+  "party_class_counts": [
+   [
+    5659,
+    618
+   ],
+   [
+    1167,
+    307
+   ],
+   [
+    13,
+    729
+   ],
+   [
+    0,
+    477
+   ],
+   [
+    1731,
+    567
+   ],
+   [
+    312,
+    2036
+   ],
+   [
+    20,
+    483
+   ],
+   [
+    117,
+    317
+   ],
+   [
+    1165,
+    832
+   ],
+   [
+    4396,
+    494
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   14,
+   3,
+   1,
+   1,
+   5,
+   5,
+   1,
+   1,
+   4,
+   15
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 33.42268345771144
+ },
+ "timing": {
+  "train_total_s": 6.445036264999999,
+  "setup_s": 0.008652943000015512,
+  "lsh_preprocessing_s": 5.49445923899998,
+  "local_gradients_s": 0.0136561640022137,
+  "tree_building_s": 0.37968136699964816,
+  "aggregation_comm_s": 0.15680475199928878,
+  "prediction_update_s": 0.35294254699965677,
+  "model_merge_s": 0.02848472200003016
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 111600,
+  "hash_exchange_bytes": 31645440,
+  "preprocessing_bytes": 31757040,
+  "gradient_bytes": 4634116,
+  "tree_bytes": 2241801,
+  "training_bytes": 6875917,
+  "messages": 1080,
+  "total_rounds": 52,
+  "total_bytes": 38632957
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 2.5805632,
+  "training_s": 1.5500733599999998,
+  "total_s": 4.130636559999999
+ },
+ "quality": {
+  "accuracy": 0.9664179104477612,
+  "macro_f1": 0.9612343297974928,
+  "weighted_f1": 0.966338569927604,
+  "macro_precision": 0.9634590928359474,
+  "macro_recall": 0.9590996892584194,
+  "fpr": 0.0205761316872428,
+  "precision": {
+   "benign": 0.9714285714285714,
+   "attack": 0.9554896142433235
+  },
+  "recall": {
+   "benign": 0.9794238683127572,
+   "attack": 0.9387755102040817
+  },
+  "support": {
+   "benign": 3645,
+   "attack": 1715
+  },
+  "confusion_matrix": [
+   [
+    3570,
+    75
+   ],
+   [
+    105,
+    1610
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 4.294498134484782e-07,
+  "single_median_s": 0.00014705700004924438,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 208910,
+  "n_trees": 50,
+  "n_boosting_rounds": 50,
+  "total_nodes": 5152
+ }
+}

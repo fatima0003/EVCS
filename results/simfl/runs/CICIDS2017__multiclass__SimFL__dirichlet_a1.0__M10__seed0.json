@@ -1,0 +1,335 @@
+{
+ "run_id": "CICIDS2017__multiclass__SimFL__dirichlet_a1.0__M10__seed0",
+ "method": "SimFL",
+ "dataset": "CICIDS2017",
+ "mode": "multiclass",
+ "partition": "dirichlet",
+ "alpha": 1.0,
+ "n_parties": 10,
+ "seed": 0,
+ "config": {
+  "gbdt": {
+   "n_rounds": 50,
+   "max_depth": 8,
+   "eta": 0.1,
+   "reg_lambda": 1.0,
+   "gamma": 1.0,
+   "min_child_weight": 1.0,
+   "max_bin": 256,
+   "tree_method": "hist"
+  },
+  "lsh": {
+   "L": null,
+   "max_L": 40,
+   "r": 4.0,
+   "p_stable": "gaussian",
+   "tie_break": "random"
+  },
+  "schedule": "proportional_blocks",
+  "n_threads": 4,
+  "network": {
+   "latency_ms": 20.0,
+   "bandwidth_mbps": 100.0
+  },
+  "test_size": 0.2,
+  "split_seed": 42,
+  "min_party_size": 20,
+  "inference": {
+   "n_single": 1000,
+   "n_warmup": 100
+  },
+  "drop_cols": []
+ },
+ "environment": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.2.0",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "n_threads": 4
+ },
+ "data": {
+  "n_train": 21440,
+  "n_test": 5360,
+  "n_features": 77,
+  "class_names": [
+   "BENIGN",
+   "Bot",
+   "BruteForce",
+   "DoS",
+   "Infiltration",
+   "PortScan",
+   "WebAttack"
+  ],
+  "party_sizes": [
+   966,
+   3453,
+   858,
+   4036,
+   2812,
+   373,
+   2197,
+   1741,
+   2851,
+   2153
+  ],
+  "party_class_counts": [
+   [
+    279,
+    227,
+    2,
+    383,
+    0,
+    1,
+    74
+   ],
+   [
+    2393,
+    336,
+    18,
+    340,
+    1,
+    167,
+    198
+   ],
+   [
+    280,
+    60,
+    2,
+    247,
+    6,
+    128,
+    135
+   ],
+   [
+    3264,
+    212,
+    8,
+    210,
+    1,
+    79,
+    262
+   ],
+   [
+    2405,
+    138,
+    3,
+    105,
+    3,
+    41,
+    117
+   ],
+   [
+    65,
+    206,
+    4,
+    18,
+    2,
+    40,
+    38
+   ],
+   [
+    1517,
+    59,
+    1,
+    358,
+    9,
+    109,
+    144
+   ],
+   [
+    621,
+    191,
+    30,
+    130,
+    0,
+    137,
+    632
+   ],
+   [
+    2418,
+    21,
+    5,
+    131,
+    1,
+    254,
+    21
+   ],
+   [
+    1338,
+    123,
+    4,
+    511,
+    6,
+    48,
+    123
+   ]
+  ]
+ },
+ "simfl": {
+  "L": 40,
+  "r": 4.0,
+  "p_stable": "gaussian",
+  "tie_break": "random",
+  "schedule": "proportional_blocks",
+  "trees_per_party": [
+   2,
+   8,
+   2,
+   9,
+   6,
+   0,
+   5,
+   4,
+   6,
+   8
+  ],
+  "unmatched_samples": 0,
+  "mean_matching_hashes": 35.97016480099502
+ },
+ "timing": {
+  "train_total_s": 7.407723113000088,
+  "setup_s": 0.009036164000008284,
+  "lsh_preprocessing_s": 5.675352733999944,
+  "local_gradients_s": 0.18124769200051105,
+  "tree_building_s": 0.7267897020004739,
+  "aggregation_comm_s": 0.3232929320023459,
+  "prediction_update_s": 0.4010662460001413,
+  "model_merge_s": 0.07824695999988762
+ },
+ "communication": {
+  "scaler_rounds": 1,
+  "hash_exchange_rounds": 1,
+  "preprocessing_rounds": 2,
+  "training_rounds": 50,
+  "scaler_bytes": 111600,
+  "hash_exchange_bytes": 31645440,
+  "preprocessing_bytes": 31757040,
+  "gradient_bytes": 29173020,
+  "tree_bytes": 6433443,
+  "training_bytes": 35606463,
+  "messages": 1080,
+  "total_rounds": 52,
+  "total_bytes": 67363503
+ },
+ "network": {
+  "latency_ms": 20.0,
+  "bandwidth_mbps": 100.0,
+  "preprocessing_s": 2.5805632,
+  "training_s": 3.84851704,
+  "total_s": 6.429080239999999
+ },
+ "quality": {
+  "accuracy": 0.9794776119402985,
+  "macro_f1": 0.8985345486492804,
+  "weighted_f1": 0.9789684544728745,
+  "macro_precision": 0.9837184429043697,
+  "macro_recall": 0.8541880745758486,
+  "fpr": 0.008779149519890261,
+  "precision": {
+   "BENIGN": 0.979929481963656,
+   "Bot": 0.979328165374677,
+   "BruteForce": 1.0,
+   "DoS": 0.9801652892561984,
+   "Infiltration": 1.0,
+   "PortScan": 0.9612403100775194,
+   "WebAttack": 0.9853658536585366
+  },
+  "recall": {
+   "BENIGN": 0.9912208504801098,
+   "Bot": 0.9643765903307888,
+   "BruteForce": 0.42105263157894735,
+   "DoS": 0.9737274220032841,
+   "Infiltration": 0.7142857142857143,
+   "PortScan": 0.9880478087649402,
+   "WebAttack": 0.926605504587156
+  },
+  "support": {
+   "BENIGN": 3645,
+   "Bot": 393,
+   "BruteForce": 19,
+   "DoS": 609,
+   "Infiltration": 7,
+   "PortScan": 251,
+   "WebAttack": 436
+  },
+  "confusion_matrix": [
+   [
+    3613,
+    7,
+    0,
+    11,
+    0,
+    10,
+    4
+   ],
+   [
+    14,
+    379,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    10,
+    0,
+    8,
+    0,
+    0,
+    0,
+    1
+   ],
+   [
+    16,
+    0,
+    0,
+    593,
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0,
+    0,
+    5,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    0,
+    0,
+    0,
+    248,
+    1
+   ],
+   [
+    31,
+    0,
+    0,
+    1,
+    0,
+    0,
+    404
+   ]
+  ]
+ },
+ "inference": {
+  "batch_per_sample_s": 1.3953731342923417e-06,
+  "single_median_s": 0.00020261100007701316,
+  "n_single": 1000
+ },
+ "model": {
+  "bytes": 673728,
+  "n_trees": 350,
+  "n_boosting_rounds": 50,
+  "total_nodes": 13028
+ }
+}
